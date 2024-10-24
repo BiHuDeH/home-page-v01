@@ -3,41 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My GitHub Pages Homepage</title>
+  <title>My News Homepage</title>
   <style>
     body {
       background-color: #f0f0f0;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      padding: 50px;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
     }
-    h1 {
-      color: #333;
+    header {
+      background-color: #c8102e; /* Fox News red */
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #002d72; /* Fox News dark blue */
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    #main-content {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
     }
     #news-section {
-      background-color: #fff;
-      padding: 20px;
+      flex: 3;
+      margin-right: 20px;
+    }
+    #sidebar {
+      flex: 1;
+      background-color: #ffffff;
+      padding: 15px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      margin-top: 20px; /* Adds space above the news section */
     }
     .news-item {
-      margin-bottom: 15px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
-    .news-item h3 a {
-      color: #0073e6;
-      text-decoration: none;
+    .news-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
     }
-    .news-item p {
-      color: #555;
+    .news-item h3 {
+      margin: 10px 0;
+      font-size: 18px;
+      color: #002d72;
+    }
+    footer {
+      text-align: center;
+      padding: 10px 0;
+      background-color: #c8102e;
+      color: white;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    #news-section h2 {
+      margin-bottom: 10px;
+      color: #c8102e; /* Title color */
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to My GitHub Pages Homepage</h1>
-  <p>This is hosted for free using GitHub Pages.</p>
 
-  <!-- Placeholder for the news section -->
-  <div id="news-placeholder"></div>
+<header>
+  <h1>My News Homepage</h1>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Politics</a>
+  <a href="#">World</a>
+  <a href="#">Entertainment</a>
+  <a href="#">Health</a>
+</nav>
+
+<div id="main-content">
+  <div id="news-section">
+    <h2>Latest News</h2>
+    <!-- News articles will be injected here -->
+    <div id="news-placeholder"></div>
+  </div>
+
+  <div id="sidebar">
+    <h2>Top Stories</h2>
+    <p>Some top stories or advertisements can go here.</p>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2024 My News Homepage</p>
+</footer>
+
 </body>
 </html>
