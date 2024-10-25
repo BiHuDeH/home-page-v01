@@ -33,11 +33,34 @@
       font-size: 18px;
     }
     #widget-section {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       margin: 20px 0;
       background-color: #fff;
       padding: 20px;
       border-radius: 10px;
-      text-align: center;
+    }
+    .widget-box {
+      background-color: #e0e0e0;
+      border: 2px dashed #bbb;
+      border-radius: 10px;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      color: #555;
+      cursor: pointer;
+    }
+    .widget-box:hover {
+      background-color: #d0d0d0;
+    }
+    .widget-box .add-widget-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #888;
     }
     #news-section {
       display: grid;
@@ -82,8 +105,22 @@
 
   <!-- Widget Section -->
   <div id="widget-section">
-    <h2>Drag and Drop Widget Here</h2>
-    <p>This section can hold your custom widget.</p>
+    <div class="widget-box" onclick="addWidget(this)">
+      <div class="add-widget-icon">+</div>
+      <div>Add Widget</div>
+    </div>
+    <div class="widget-box" onclick="addWidget(this)">
+      <div class="add-widget-icon">+</div>
+      <div>Add Widget</div>
+    </div>
+    <div class="widget-box" onclick="addWidget(this)">
+      <div class="add-widget-icon">+</div>
+      <div>Add Widget</div>
+    </div>
+    <div class="widget-box" onclick="addWidget(this)">
+      <div class="add-widget-icon">+</div>
+      <div>Add Widget</div>
+    </div>
   </div>
 
   <!-- News Section (Grid) -->
@@ -97,6 +134,15 @@
     <div id="fresh-news-placeholder"></div>
   </div>
 </div>
+
+<script>
+  function addWidget(widgetBox) {
+    const widgetContent = prompt("Enter the widget's name or application URL:");
+    if (widgetContent) {
+      widgetBox.innerHTML = '<div>' + widgetContent + '</div>';
+    }
+  }
+</script>
 
 </body>
 </html>
