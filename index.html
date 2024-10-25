@@ -3,146 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom News Homepage</title>
+  <title>My Customized Homepage</title>
   <style>
     body {
-      background-color: #f5f5f5;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 24px;
-    }
-    #search-box {
-      margin-top: 20px;
+      background-color: #f0f0f0;
+      font-family: 'Arial', sans-serif;
       text-align: center;
     }
-    #search-box input[type="text"] {
-      width: 60%;
-      padding: 10px;
-      font-size: 18px;
+
+    h1 {
+      color: #333;
+      margin-top: 30px;
     }
-    #widget-section {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin: 20px 0;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .widget-box {
-      background-color: #e0e0e0;
-      border: 2px dashed #bbb;
-      border-radius: 10px;
-      height: 150px;
+
+    .widget-area {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .widget-box {
+      width: 200px;
+      height: 150px;
+      background-color: #fff;
+      border: 2px dashed #333;
+      display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 18px;
-      color: #555;
       cursor: pointer;
+      transition: background-color 0.2s;
     }
+
     .widget-box:hover {
-      background-color: #d0d0d0;
+      background-color: #ddd;
     }
-    .widget-box .add-widget-icon {
-      font-size: 36px;
-      margin-bottom: 10px;
-      color: #888;
-    }
-    #news-section {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-    .news-item {
-      background-color: white;
-      border-radius: 8px;
-      padding: 15px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-    .news-item img {
-      width: 100%;
-      border-radius: 5px;
-    }
-    .news-item h3 {
-      margin: 10px 0;
+
+    .widget-box span {
       font-size: 16px;
       color: #333;
     }
-    #fresh-news {
+
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .news-item {
       background-color: #fff;
+      border: 1px solid #ccc;
       padding: 20px;
-      border-radius: 8px;
+      text-align: left;
+    }
+
+    .news-item img {
+      width: 100%;
+      height: auto;
+    }
+
+    .news-item h3 {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .news-item p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .end-page {
+      margin-top: 50px;
+      font-size: 18px;
+      color: #333;
     }
   </style>
 </head>
 <body>
+  <h1>Welcome to My Customized Homepage</h1>
 
-<header>
-  Custom News Homepage
-</header>
-
-<div class="container">
-  <!-- Google Search Bar -->
-  <div id="search-box">
-    <input type="text" placeholder="Search on Google..." id="google-search" />
+  <!-- Widget Area -->
+  <div class="widget-area">
+    <div class="widget-box"><span>+ Add Widget</span></div>
+    <div class="widget-box"><span>+ Add Widget</span></div>
+    <div class="widget-box"><span>+ Add Widget</span></div>
+    <div class="widget-box"><span>+ Add Widget</span></div>
   </div>
 
-  <!-- Widget Section -->
-  <div id="widget-section">
-    <div class="widget-box" onclick="addWidget(this)">
-      <div class="add-widget-icon">+</div>
-      <div>Add Widget</div>
-    </div>
-    <div class="widget-box" onclick="addWidget(this)">
-      <div class="add-widget-icon">+</div>
-      <div>Add Widget</div>
-    </div>
-    <div class="widget-box" onclick="addWidget(this)">
-      <div class="add-widget-icon">+</div>
-      <div>Add Widget</div>
-    </div>
-    <div class="widget-box" onclick="addWidget(this)">
-      <div class="add-widget-icon">+</div>
-      <div>Add Widget</div>
-    </div>
+  <!-- News Section (Limit to 16) -->
+  <div class="news-container" id="news-section">
+    <!-- Dynamic news content will be injected here -->
   </div>
 
-  <!-- News Section (Grid) -->
-  <div id="news-section">
-    <div id="news-placeholder"></div>
-  </div>
+  <!-- End of Page Section -->
+  <div class="end-page">End of Page</div>
+  
+  <script>
+    async function loadNews() {
+      try {
+        const response = await fetch('https://newsapi.org/v2/everything?q=US%20presidential%20election%202024&apiKey=YOUR_API_KEY');
+        const data = await response.json();
+        const newsSection = document.getElementById('news-section');
 
-  <!-- Fresh News Section -->
-  <div id="fresh-news">
-    <h2>Top Fresh News in Selected Topic</h2>
-    <div id="fresh-news-placeholder"></div>
-  </div>
-</div>
-
-<script>
-  function addWidget(widgetBox) {
-    const widgetContent = prompt("Enter the widget's name or application URL:");
-    if (widgetContent) {
-      widgetBox.innerHTML = '<div>' + widgetContent + '</div>';
-    }
-  }
-</script>
-
-</body>
-</html>
+        // Display 16 news items
+        const articles = data.articles.slice(0, 16);
+        newsSection.innerHTML
